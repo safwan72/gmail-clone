@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
+import Layout from './components/Layout';
+import Body from './components/Body/Body';
 
 function App() {
   return (
     <div className="App">
-      <h1> Start</h1>
+    <Layout>
+    <Body/>
+    </Layout>
     </div>
   );
 }
