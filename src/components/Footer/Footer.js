@@ -7,7 +7,9 @@ const Footer = () => {
     <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center',
     [theme.breakpoints.down('sm')]:{
       flexDirection:'column'
-    }
+    },
+    py:3,
+    my:2
     }}>
 <Box>
 <Typography variant="caption" sx={{fontSize:'0.62rem'}}>4.3 GB of 15 GB used</Typography>

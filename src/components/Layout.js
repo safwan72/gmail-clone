@@ -17,6 +17,7 @@ import Menu from '@mui/material/Menu';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import RightNavbar from './Header/RightNavbar';
 import LeftNavbar from './Header/LeftNavbar';
+import { Container } from '@mui/material';
 
 const drawerWidth = 160;
 
@@ -81,7 +82,7 @@ const AppBar = styled(MuiAppBar, {
   }),
   ...(open && {
     marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
+    width: `100%`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -93,14 +94,10 @@ const AppBar = styled(MuiAppBar, {
 export default function Layout({children}) {
   const [open, setOpen] = React.useState(false);
 const theme=useTheme();
-  const handleDrawerOpen = () => {
-    setOpen(true);
+  const handleDrawer = () => {
+    setOpen(!open);
   };
 
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);;
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const handleMobileMenuClose = () => {
@@ -168,14 +165,13 @@ const theme=useTheme();
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={handleDrawer}
             edge="start"
             sx={{
               marginRight: 5,
               [theme.breakpoints.down('md')]:{
                 marginRight: 2,
               },
-              ...(open && { display: 'none' }),
             }}
           >
             <MenuIcon />
@@ -242,12 +238,14 @@ const theme=useTheme();
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      <LeftNavbar open={open} handleDrawerClose={handleDrawerClose} />
+      <Container maxWidth='xl'>
+      <LeftNavbar open={open} handleDrawer={handleDrawer} />
       <Box component="main" sx={{ flexGrow: 1, width:"100%" }}>
         <DrawerHeader />
  {children}
       </Box>
    <RightNavbar/>
+      </Container>
     </Box>
   );
 }

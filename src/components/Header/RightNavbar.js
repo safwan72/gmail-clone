@@ -10,7 +10,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
-const drawerWidthRight = 200;
 
 
 const rightDrawer=[
@@ -71,7 +70,6 @@ const DrawerHeaderRight = styled('div')(({ theme }) => ({
 
 const DrawerRight = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
-    width: drawerWidthRight,
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',

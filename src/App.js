@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 import Layout from './components/Layout';
-import Body from './components/Body/Body';
+import RouteElement from './components/routes/RouteElement';
 
 function App() {
   return (
     <div className="App">
     <Layout>
-    <Body/>
+    <RouteElement/>
     </Layout>
     </div>
   );

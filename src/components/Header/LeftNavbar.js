@@ -2,7 +2,6 @@ import React from 'react'
 import { styled, useTheme } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -26,7 +25,8 @@ import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
 import AddIcon from '@mui/icons-material/Add';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import ColorizeIcon from '@mui/icons-material/Colorize';
 
 const leftDrawer=[
   {
@@ -110,7 +110,7 @@ const drawerWidth = 160;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
-  backgroundColor:'#e8f1ff',
+  backgroundColor:'#F6F8FC',
   border:'none',
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -125,7 +125,7 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  backgroundColor:'#e8f1ff',
+  backgroundColor:'#F6F8FC',
   border:'none',
   width: `calc(${theme.spacing(6)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
@@ -168,16 +168,15 @@ const handlesetmore = () => {
 };
   return (
     <Drawer variant="permanent" open={open}>
-    <DrawerHeader>
-      <IconButton onClick={handleDrawerClose}>
-        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-      </IconButton>
-      {/* <Button variant="contained" startIcon={<AddIcon />} sx={{
-        backgroundColor:'#C2E7FF',
-        color:'black',
-        padding:'15px'
-      }}>Compose</Button> */}
-    </DrawerHeader>
+      <DrawerHeader>
+      </DrawerHeader>
+      {open && (
+        <Box sx={{my:2,display:'flex',alignItems:'center',justifyContent:'center'}}>
+          <Button startIcon={<ColorizeIcon />} sx={{backgroundColor:'#C2E7FF',color:'black',padding:'10px 16px',borderRadius:'15px',"&:hover":{
+            backgroundColor:'#9cc1d8'
+          }}}>Compose</Button>
+        </Box>
+      )}
     <List >
       {leftDrawer?.map((text, index) => (
         <ListItem key={index} disablePadding sx={{ display: 'block' }} title={text?.name}>
