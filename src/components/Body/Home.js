@@ -1,14 +1,14 @@
-import React from 'react'
-import { Box, List } from '@mui/material'
-import Checkbox from '@mui/material/Checkbox';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Tab from '@mui/material/Tab';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Emails from './Emails';
-import HOC from './HOC';
-
+import React from "react";
+import { Box, List } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Tab from "@mui/material/Tab";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Emails from "./Emails";
+import HOC from "./HOC";
+import EmailList from "./EmailList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -21,11 +21,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
 }
@@ -39,7 +35,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -49,55 +45,44 @@ const Home = () => {
     setValue(newValue);
   };
   return (
-   <HOC>
-    <Box sx={{display:'flex',alignItems:'center',justifyContent:'flex-start',width:'40%'}}>
-      <Checkbox size="small" style={{marginRight:'5px'}}/>
-      <RefreshIcon fontSize="small" style={{marginRight:'5px'}}/>
-<MoreVertIcon fontSize="small" style={{marginRight:'5px'}}/>
-    </Box>
-    <Box>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
+    <HOC>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          width: "40%",
+          my: 2,
+        }}
+      >
+        <Checkbox size="small" style={{ marginRight: "5px" }} />
+        <RefreshIcon fontSize="small" style={{ marginRight: "5px" }} />
+        <MoreVertIcon fontSize="small" style={{ marginRight: "5px" }} />
       </Box>
-      <TabPanel value={value} index={0}>
-        <List>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        <Emails/>
-        </List>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-    </Box>
-      </HOC>
-  )
-}
+      <Box>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+          >
+            <Tab label="Primary" {...a11yProps(0)} />
+            <Tab label="Social" {...a11yProps(1)} />
+            <Tab label="Promotions" {...a11yProps(2)} />
+          </Tabs>
+        </Box>
+        <TabPanel value={value} index={0}>
+          <EmailList />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+        <EmailList />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+        <EmailList />
+        </TabPanel>
+      </Box>
+    </HOC>
+  );
+};
 
-export default Home
+export default Home;

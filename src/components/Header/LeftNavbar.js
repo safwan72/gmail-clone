@@ -2,9 +2,6 @@ import React from 'react'
 import { styled, useTheme } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import IconButton from '@mui/material/IconButton';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -27,6 +24,10 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Box, Button } from '@mui/material';
 import ColorizeIcon from '@mui/icons-material/Colorize';
+import NewMessage from '../Body/NewMessage';
+import { useDispatch } from 'react-redux';
+import { handleSendMessage } from '../../features/mailSlice';
+
 
 const leftDrawer=[
   {
@@ -159,12 +160,15 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 
-const LeftNavbar = ({open,handleDrawerClose}) => {
+const LeftNavbar = ({open,handleDrawerClose,sendMessageisOpen}) => {
 const theme=useTheme();
 const [more, setmore] = React.useState(false);
-
 const handlesetmore = () => {
   setmore(!more);
+};
+const dispatch=useDispatch()
+const handleModal = () => {
+  dispatch(handleSendMessage());
 };
   return (
     <Drawer variant="permanent" open={open}>
@@ -174,9 +178,10 @@ const handlesetmore = () => {
         <Box sx={{my:2,display:'flex',alignItems:'center',justifyContent:'center'}}>
           <Button startIcon={<ColorizeIcon />} sx={{backgroundColor:'#C2E7FF',color:'black',padding:'10px 16px',borderRadius:'15px',"&:hover":{
             backgroundColor:'#9cc1d8'
-          }}}>Compose</Button>
+          }}} onClick={()=>handleModal()}>Compose</Button>
         </Box>
       )}
+      <NewMessage open={sendMessageisOpen} handleModal={handleModal}/>
     <List >
       {leftDrawer?.map((text, index) => (
         <ListItem key={index} disablePadding sx={{ display: 'block' }} title={text?.name}>

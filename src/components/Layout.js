@@ -18,6 +18,8 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import RightNavbar from './Header/RightNavbar';
 import LeftNavbar from './Header/LeftNavbar';
 import { Container } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { selectsendMessageisOpen } from '../features/mailSlice';
 
 const drawerWidth = 160;
 
@@ -97,6 +99,7 @@ const theme=useTheme();
   const handleDrawer = () => {
     setOpen(!open);
   };
+  const sendMessageisOpen=useSelector(selectsendMessageisOpen);
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);;
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -189,9 +192,6 @@ const theme=useTheme();
           }}
           >
             <img src={Logo} alt='Gmail Clone' style={{objectFit:'fill',width:'80px',height:'40px',
-          [theme.breakpoints.down('sm')]:{
-            width:'30px',height:'15px',
-          }
           }}/>
           </Box>
           <Box sx={{ flexGrow: 1 }} />
@@ -239,7 +239,7 @@ const theme=useTheme();
       </AppBar>
       {renderMobileMenu}
       <Container maxWidth='xl'>
-      <LeftNavbar open={open} handleDrawer={handleDrawer} />
+      <LeftNavbar open={open} handleDrawer={handleDrawer} sendMessageisOpen={sendMessageisOpen}/>
       <Box component="main" sx={{ flexGrow: 1, width:"100%" }}>
         <DrawerHeader />
  {children}

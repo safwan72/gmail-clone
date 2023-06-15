@@ -22,7 +22,7 @@ const HOC = ({ children }) => {
           pr: 0,
         },
       }}
-      fixed
+      
     >
       {children}
       <Footer />
